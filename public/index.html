@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="entrada" class="entrada">
+    <form id="form-entrada" class="cartao-entrada">
+      <h1>Bem-vindo de volta!</h1>
+      <p>Escolha um nome para entrar no chat.</p>
+      <label for="nome">Nome de usuário</label>
+      <input id="nome" maxlength="20" autocomplete="off" required />
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <div class="app">
+    <nav class="trilho" aria-label="Servidores">
+      <div class="servidor ativo" title="Meu servidor">M</div>
+    </nav>
+
+    <aside class="canais">
+      <header class="topo-lateral">Meu servidor</header>
+      <div class="titulo-secao">
+        <span>Canais de texto</span>
+        <button id="btn-novo-canal" title="Criar canal" aria-label="Criar canal">+</button>
+      </div>
+      <ul id="lista-canais"></ul>
+      <div class="titulo-secao">
+        <span>Canais de voz</span>
+        <button id="btn-nova-sala" title="Criar sala de voz" aria-label="Criar sala de voz">+</button>
+      </div>
+      <ul id="lista-voz"></ul>
+      <div id="barra-voz" class="barra-voz" hidden>
+        <div class="info-voz">
+          <strong>Voz conectada</strong>
+          <small id="nome-sala-barra"></small>
+        </div>
+        <div class="botoes-voz">
+          <button class="ctl ctl-mic" title="Silenciar microfone" aria-label="Silenciar microfone">🎤</button>
+          <button class="ctl ctl-tela" title="Compartilhar tela" aria-label="Compartilhar tela">🖥️</button>
+          <button class="ctl ctl-sair" title="Sair da chamada" aria-label="Sair da chamada">📞</button>
+        </div>
+      </div>
+      <footer class="perfil">
+        <div id="avatar-eu" class="avatar"></div>
+        <div>
+          <strong id="nome-eu"></strong>
+          <small>Online</small>
+        </div>
+      </footer>
+    </aside>
+
+    <main class="chat">
+      <header class="topo-chat">
+        <button class="btn-menu" aria-label="Abrir menu de canais">☰</button>
+        <span class="hash">#</span><strong id="titulo-canal">geral</strong>
+        <button class="btn-membros" aria-label="Ver membros online">👥</button>
+      </header>
+      <div id="mensagens" class="mensagens" aria-live="polite"></div>
+      <div id="digitando" class="digitando"></div>
+      <form id="form-msg" class="caixa-msg">
+        <input id="texto" maxlength="1000" autocomplete="off" placeholder="Conversar em #geral" />
+      </form>
+
+      <section id="vista-voz" class="vista-voz" aria-label="Chamada de voz">
+        <header class="topo-chat">
+          <button class="btn-menu" aria-label="Abrir menu de canais">☰</button>
+          <span class="hash">🔊</span><strong id="titulo-voz"></strong>
+        </header>
+        <div id="grade-telas" class="grade-telas"></div>
+        <div id="grade-voz" class="grade-voz"></div>
+        <div class="controles">
+          <button class="ctl ctl-mic"><span class="icone">🎤</span><span class="rot">Microfone ligado</span></button>
+          <button class="ctl ctl-tela"><span class="icone">🖥️</span><span class="rot">Compartilhar tela</span></button>
+          <button class="ctl ctl-sair"><span class="icone">📞</span><span class="rot">Sair</span></button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="membros">
+      <div class="titulo-secao"><span id="contagem">Online</span></div>
+      <ul id="lista-membros"></ul>
+    </aside>
+  </div>
+
+  <div id="fundo-menu" class="fundo-menu"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+  <script src="menu.js"></script>
+  <script src="voz.js"></script>
+</body>
+</html>
